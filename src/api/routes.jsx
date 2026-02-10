@@ -1,4 +1,4 @@
-const APIURL = "https://ns-website-backend.onrender.com/api";
+const APIURL = import.meta.env.VITE_API_URL
 
 // API route for contact form submission
 export async function contactCreate(request) {
