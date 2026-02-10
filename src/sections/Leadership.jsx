@@ -10,7 +10,7 @@ export default function Leadership() {
     {
       name: "Shakeel Ahmed",
       role: "Business Advisor",
-      desc: "Brings 25 years of experience in building and scaling businesses, guiding with real-world entrepreneurial wisdom. Provides clarity, stability, and practical insight through disciplined, sustainability-focused decision-making.",
+      desc: "Brings 25+ years of experience in building and scaling businesses, guiding with real-world entrepreneurial wisdom. Provides clarity, stability, and practical insight through disciplined, sustainability-focused decision-making.",
     },
     {
       name: "Mohammed Kamil",
@@ -33,7 +33,7 @@ export default function Leadership() {
       desc: "Known for calm leadership and a strong sense of responsibility, he coordinates projects and aligns teams to maintain clarity across workflows. His disciplined approach ensures steady progress, accountability, and consistent quality delivery.",
     },
     {
-      name: "Harshita",
+      name: "R Harshitha",
       role: "HR Associate",
       desc: "Manages human resource operations and people-centric processes across the organization. She supports recruitment, internal communication, employee engagement, and HR workflows to foster a structured, positive, and compliant work environment.",
     },
