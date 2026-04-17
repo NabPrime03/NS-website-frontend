@@ -1,23 +1,26 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import { 
-  Code, 
-  Smartphone, 
-  GraduationCap, 
-  Database, 
-  Briefcase, 
-  ArrowRight, 
-  Check, 
-  MoveLeft, 
-  X, 
-  Volume2, 
-  VolumeOff, 
-  RotateCcw, 
-  Maximize, 
-  Minimize, 
-  Pause, 
-  Play 
+import {
+  Code,
+  Smartphone,
+  GraduationCap,
+  Database,
+  Briefcase,
+  ArrowRight,
+  MoveLeft,
+  X,
+  Volume2,
+  VolumeOff,
+  RotateCcw,
+  Maximize,
+  Minimize,
+  Pause,
+  Play
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import webDevVideo from "../assets/web-dev.mp4";
+import appDevVideo from "../assets/app-dev-ns.mp4";
+import itConsultancyVideo from "../assets/ITconsultancy-ns.mp4";
+import businessVideo from "../assets/bussiness-ns.mp4";
 
 export default function App() {
   const [activeVideoIndex, setActiveVideoIndex] = useState(null);
@@ -35,7 +38,9 @@ export default function App() {
 
   useEffect(() => {
     if (isMaximized && maxVideoRef.current && activeVideoIndex !== null) {
-      const cardVideo = document.getElementById(`service-video-${activeVideoIndex}`);
+      const cardVideo = document.getElementById(
+        `service-video-${activeVideoIndex}`
+      );
       if (cardVideo) {
         maxVideoRef.current.currentTime = cardVideo.currentTime;
       }
@@ -43,12 +48,15 @@ export default function App() {
   }, [isMaximized, activeVideoIndex]);
 
   useEffect(() => {
-    const video = isMaximized ? maxVideoRef.current : getCardVideo();
+    const video = isMaximized
+      ? maxVideoRef.current
+      : getCardVideo();
     if (!video) return;
-    
+
     const updateProgress = () => {
       if (video.duration) {
-        const currentProgress = (video.currentTime / video.duration) * 100;
+        const currentProgress =
+          (video.currentTime / video.duration) * 100;
         setProgress(currentProgress);
 
         if (currentProgress >= 30 && !isMaximized) {
@@ -56,58 +64,82 @@ export default function App() {
         }
       }
     };
-    
+
     video.addEventListener("timeupdate", updateProgress);
-    return () => video.removeEventListener("timeupdate", updateProgress);
+    return () =>
+      video.removeEventListener("timeupdate", updateProgress);
   }, [activeVideoIndex, isMaximized, getCardVideo]);
 
-  const handleMaximize = useCallback((e) => {
-    e.stopPropagation();
-    if (isMaximized) {
-      const cardVideo = getCardVideo();
-      if (cardVideo && maxVideoRef.current) {
-        cardVideo.currentTime = maxVideoRef.current.currentTime;
+  const handleMaximize = useCallback(
+    (e) => {
+      e.stopPropagation();
+      if (isMaximized) {
+        const cardVideo = getCardVideo();
+        if (cardVideo && maxVideoRef.current) {
+          cardVideo.currentTime =
+            maxVideoRef.current.currentTime;
+        }
       }
-    }
-    setIsMaximized((prev) => !prev);
-  }, [isMaximized, getCardVideo]);
+      setIsMaximized((prev) => !prev);
+    },
+    [isMaximized, getCardVideo]
+  );
 
+  
   const services = [
     {
       title: "Website Development",
-      desc: "High-performance, responsive websites built to scale with your business and convert visitors into customers.",
+      desc:
+        "High-performance, responsive websites built to scale with your business and convert visitors into customers.",
       icon: Code,
       emoji: "🌐",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4"
+      video: webDevVideo,
+      cardVideoClass: "w-full h-full object-cover object-[23%_center] ",
+      maxVideoClass: "w-full h-full object-cover"
     },
     {
       title: "App Development",
-      desc: "Native and cross-platform mobile apps focused on usability, speed, and long-term maintainability.",
+      desc:
+        "Native and cross-platform mobile apps focused on usability, speed, and long-term maintainability.",
       icon: Smartphone,
       emoji: "📱",
-      video: "https://www.w3schools.com/html/movie.mp4"
+      video: appDevVideo,
+      cardVideoClass: "w-full h-full object-contain ",
+      maxVideoClass: "w-full h-full object-contain object-[50%_65%]"
     },
-    {
+
+    /*{
       title: "Training & Placement",
-      desc: "Industry-aligned training programs with hands-on projects and career guidance for aspiring professionals.",
+      desc:
+        "Industry-aligned training programs with hands-on projects and career guidance for aspiring professionals.",
       icon: GraduationCap,
       emoji: "🎓",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
+      video:
+        "https://www.w3schools.com/html/mov_bbb.mp4",
+      cardVideoClass: "w-full h-[210px] object-cover",
+      maxVideoClass: "w-full h-full object-cover"
+    },*/
+
     {
       title: "IT Consultancy",
-      desc: "Expert advice on system architecture, security, cloud adoption, and digital transformation strategies.",
+      desc:
+        "Expert advice on system architecture, security, cloud adoption, and digital transformation strategies.",
       icon: Database,
       emoji: "💻",
-      video: "https://www.w3schools.com/html/movie.mp4"
+      video: itConsultancyVideo,
+      cardVideoClass: "w-full h-[150%] object-cover object-[23%_center] ",
+      maxVideoClass: "w-full h-full object-contain bg-transparent"
     },
     {
       title: "Business Consultancy",
-      desc: "Data-driven strategies to streamline operations, improve efficiency, and accelerate business growth.",
+      desc:
+        "Data-driven strategies to streamline operations, improve efficiency, and accelerate business growth.",
       icon: Briefcase,
       emoji: "📊",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
+      video: businessVideo,
+      cardVideoClass: "w-full h-[150%] object-cover object-[23%_center] ",
+      maxVideoClass: "w-full h-full object-contain"
+    }
   ];
 
   const pulseVariant = {
@@ -158,7 +190,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
               {services.map((item, i) => {
                 const Icon = item.icon;
                 const isActive = activeVideoIndex === i;
@@ -168,7 +200,7 @@ export default function App() {
                     key={i}
                     initial="rest"
                     whileHover="hover"
-                    className="group relative bg-[#111827]/70 border border-white/10 p-8 rounded-2xl hover:bg-[#111827]
+                    className="group relative h-full bg-[#111827]/70 border border-white/10 p-8 rounded-2xl hover:bg-[#111827]
                     hover:border-[#D4AF37]/40 transition duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]"
                   >
                     <div className={`transition-opacity duration-500 ${isActive ? "opacity-10" : "opacity-100"}`}>
@@ -209,13 +241,13 @@ export default function App() {
                       {isActive && !isMaximized && (
                         <motion.div
                           initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                          animate={{ opacity: 1, scale: 0.85, y: 0 }}
-                          exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          exit={{ opacity: 0, scale: 0.95, y: 20 }}
                           transition={{ type: "spring", damping: 25, stiffness: 300 }}
                           onClick={(e) => e.stopPropagation()}
-                          className="absolute inset-0 z-30 flex items-center justify-center p-4"
+                          className="absolute inset-0 z-30 rounded-2xl overflow-hidden"
                         >
-                          <div className="relative w-full h-full rounded-xl bg-black/10 border border-[#D4AF37]/40 overflow-hidden shadow-2xl group/player">
+                          <div className="relative w-full h-full bg-black/10 group/player">
                             <div className="absolute top-2 right-2 z-50 flex gap-2 opacity-0 group-hover/player:opacity-100 transition-opacity">
                               <div className="group/ctrl relative flex flex-col items-center">
                                 <button
@@ -239,13 +271,16 @@ export default function App() {
                             
                             <video
                               id={`service-video-${i}`}
-                              autoPlay
-                              muted={muted}
-                              onEnded={() => { setVideoEnded(true); setPaused(true); }}
-                              playsInline
-                              className="w-full h-full object-cover"
+                                  autoPlay
+                                  muted={muted}
+                                  onEnded={() => {
+                                  setVideoEnded(true);
+                                  setPaused(true);
+                                  }}
+                                  playsInline
+                                  className={item.cardVideoClass}
                             >
-                              <source src={item.video} type="video/mp4" />
+                                <source src={item.video} type="video/mp4" />
                             </video>
 
                             <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col gap-3 opacity-0 group-hover/player:opacity-100 transition-opacity">
@@ -368,21 +403,24 @@ export default function App() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <video
-                  ref={maxVideoRef}
-                  autoPlay
-                  muted={muted}
-                  onEnded={() => { setVideoEnded(true); setPaused(true); }}
-                  playsInline
-                  className="w-full h-full object-contain"
-                >
-                  <source src={services[activeVideoIndex].video} type="video/mp4" />
-                </video>
+  ref={maxVideoRef}
+  autoPlay
+  muted={muted}
+  onEnded={() => {
+    setVideoEnded(true);
+    setPaused(true);
+  }}
+  playsInline
+  className={services[activeVideoIndex].maxVideoClass}
+>
+  <source
+    src={services[activeVideoIndex].video}
+    type="video/mp4"
+  />
+</video>
 
                 <div className="absolute inset-0 opacity-0 group-hover/maxplayer:opacity-100 transition-opacity bg-gradient-to-t from-black/90 via-transparent to-black/60 flex flex-col justify-between p-6 sm:p-10">
-                  <div className="flex justify-between items-start">
-                     <div>
-                       <h3 className="text-xl sm:text-2xl font-bold text-[#D4AF37] mb-1">{services[activeVideoIndex].title}</h3>
-                     </div>
+                  <div className="flex justify-end items-start">
                      <div className="group/ctrl relative flex flex-col items-center">
                         <button 
                           onClick={() => {
