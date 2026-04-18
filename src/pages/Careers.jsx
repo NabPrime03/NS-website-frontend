@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Popup from "../components/Popup";
 import { careerCreate } from "../api/routes";
 
+
 export default function Careers() {
   const [form, setForm] = useState({
     full_name: "",
@@ -71,6 +72,8 @@ export default function Careers() {
         message: "Application submitted successfully. Our team will reach out to you shortly.",
         type: "success",
       });
+      // track event
+      
 
 
       setForm({
