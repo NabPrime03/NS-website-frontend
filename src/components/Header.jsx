@@ -8,12 +8,12 @@ export default function Header({ dark, setDark }) {
   const location = useLocation();
 
   const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "About", path: "/about" },
-    { name: "Careers", path: "/careers" },
-    { name: "Contact", path: "/contact" },
-  ];
+  { name: "Home", path: "/" },
+  { name: "Services", path: "/services" },
+  { name: "About", path: "/about" },
+  { name: "Careers", path: "/careers" },
+  { name: "Contact", path: "/contact" },
+];
 
   return (
     <header className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">

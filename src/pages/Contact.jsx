@@ -4,6 +4,8 @@ import { useState } from "react";
 import Popup from "../components/Popup";
 import { contactCreate } from "../api/routes";
 
+
+
 export default function Contact() {
   const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: 30 },
@@ -56,7 +58,8 @@ export default function Contact() {
         message: "Thank you for reaching out. We'll get back to you shortly.",
         type: "success",
       });
-
+      // track event
+      
       setForm({
         full_name: "",
         email: "",

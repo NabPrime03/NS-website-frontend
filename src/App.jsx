@@ -10,6 +10,10 @@ import Careers from "./pages/Careers";
 import ScrollToTop from "./components/ScrollToTop";
 import { useEffect, useState } from "react";
 
+import Reviews from "./pages/Reviews";
+import Testimonials from "./pages/Testimonials";
+
+
 function App() {
   const [dark, setDark] = useState(
     localStorage.getItem("theme") === "dark"
@@ -21,6 +25,7 @@ function App() {
 
   return (
     <Router>
+
       <NeuralBackground />
       <ScrollToTop />
       <Header  dark={dark} setDark={setDark} />
@@ -31,6 +36,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/reviews" element={<Reviews/>} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          
         </Routes>
       </main>
 
